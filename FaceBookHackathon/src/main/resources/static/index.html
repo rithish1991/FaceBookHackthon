@@ -118,13 +118,13 @@
              
 
 	$.ajax({
-    url: 'https://still-shore-09941.herokuapp.com/sentiment/',
+    url: 'https://still-shore-09941.herokuapp.com/sentiment',
     headers: {
         'Content-Type': 'application/json',
 	
     },
     type: "POST", /* or type:"GET" or type:"PUT" */
-    dataType: "jsonp",
+    dataType: "json",
      crossDomain: true,
     data: JSON.stringify({"text":message }),
 	success: function (result) {
