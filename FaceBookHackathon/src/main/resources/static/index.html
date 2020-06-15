@@ -264,7 +264,7 @@
 	                </div>
 	                <br/><br/>
 					<div>
-					  <input type="file" id="fileUploadchallengeOne" multiple accept='image/*' style="display:none;"> 
+					  <input type="file" id="fileUploadchallengeOne" accept="image/x-png,image/gif,image/jpeg" style="display:none;"> 
 					  <button id="buttonChallengeOne">Upload Selfie with sunshine</button>  
 					  <span id="fileName"></span>
 					</div>
@@ -371,6 +371,14 @@ success: function (result) {
 		outputArea.append(`
                 <div class='user-message'>
                 <div class='message'>
+             Sorry if you didn't like the previous challenge. 	
+             We will try to bring more interesting challenges  
+                </div>
+                </div>
+            `);
+		outputArea.append(`
+                <div class='user-message'>
+                <div class='message'>
                Are you excited to take second challenge!!?
                 </div>
                 </div>
@@ -414,22 +422,35 @@ alert("error");
        
       
         	
+        	 var fileName = $('#fileUploadchallengeOne')[0].files[0].name;
+             var idxDot = fileName.lastIndexOf(".") + 1;
+             var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+          
+             if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+            	 
+            	 challengeQuestionCount++;
+           	  $("#buttonChallengeOne").attr("disabled", true);
+    			 outputArea.append(`
+   		                <div class='user-message'>
+    					<div class='message'>
+   		              Uploaded succesfully
+   		                </div>
+    			 			<br/><br/>
+   		                <div class='message'>
+   		               What do you feel about challenge 1!!? ,Did you like the challenge!!? 
+   		                </div>
+   		                </div>
+   		            `);
+    			 $("#user-input").attr("disabled", false);
+            	 
+                
+             }else{
+                 alert("Only Images files are allowed!");
+             }   
+        	
+        	
         	  //$('#fileName').text($('#fileUploadchallengeOne')[0].files[0].name);
-        	  challengeQuestionCount++;
-        	  $("#buttonChallengeOne").attr("disabled", true);
- 			 
- 			 outputArea.append(`
-		                <div class='user-message'>
- 					<div class='message'>
-		              Uploaded succesfully
-		                </div>
- 			 			<br/><br/>
-		                <div class='message'>
-		               What do you feel about challenge 1!!? ,Did you like the challenge!!? 
-		                </div>
-		                </div>
-		            `);
- 			 $("#user-input").attr("disabled", false);
+        	 
  			
         	  
         	});
