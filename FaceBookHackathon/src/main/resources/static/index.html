@@ -264,7 +264,7 @@
 	                </div>
 	                <br/><br/>
 					<div>
-					  <input type="file" id="fileUploadchallengeOne" style="display:none;"> 
+					  <input type="file" id="fileUploadchallengeOne" multiple accept='image/*' style="display:none;"> 
 					  <button id="buttonChallengeOne">Upload Selfie with sunshine</button>  
 					  <span id="fileName"></span>
 					</div>
@@ -379,7 +379,14 @@ success: function (result) {
 	else if(sentiment == "neutral")
 		{
 		confidenceMeter +=2;
-		$("#user-input").attr("disabled", false);
+		challengeQuestionCount++;
+		outputArea.append(`
+                <div class='user-message'>
+                <div class='message'>
+               Are you excited to take second challenge!!?
+                </div>
+                </div>
+            `);
 		
 		}
 	console.log(confidenceMeter);
