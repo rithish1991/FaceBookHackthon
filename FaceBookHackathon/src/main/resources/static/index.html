@@ -426,7 +426,31 @@ alert("error");
              var idxDot = fileName.lastIndexOf(".") + 1;
              var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
           
+             
+             var formData = new FormData();
+             formData.append('file', $('#fileUploadchallengeOne')[0].files[0]);
+             
              if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
+            	 
+            	 $.ajax({
+            		    url: "/upload",
+            		    type: "POST",
+            		    data:formData ,
+            		   
+            		    processData: false,
+            		    contentType: false,
+            		    cache: false,
+            		    success: function () {
+            		      // Handle upload success
+            		      // ...
+            		    },
+            		    error: function () {
+            		      // Handle upload error
+            		      // ...
+            		    }
+            		  });
+            	 
+            	 
             	 
             	 challengeQuestionCount++;
            	  $("#buttonChallengeOne").attr("disabled", true);
@@ -443,6 +467,9 @@ alert("error");
    		            `);
     			 $("#user-input").attr("disabled", false);
             	 
+    			 
+    			 
+
                 
              }else{
                  alert("Only Images files are allowed!");
