@@ -106,7 +106,9 @@
         var outputArea = $("#chat-output");
         var challengeQuestionCount = 0;
         var confidenceMeter = 0;
-
+        var formData = new FormData();
+        //formData.append('file1', $('#fileUploadchallengeOne')[0].files[0]);
+        //formData.append('fil', "1");
         $("#user-input-form").on("submit", function (e) {
         	 e.preventDefault();
            if(challengeQuestionCount == 0)
@@ -407,9 +409,635 @@ alert("error");
 
 }	//question  two   
 
-    
-    
-    
+ //Challenge 2   
+//Question 3
+if(challengeQuestionCount == 3)
+	{
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/yesno',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var data = result.yesOrNo;
+var confidence = result.confidence;
+
+if(confidence == "NA" || confidence <0.5 )
+{
+
+outputArea.append(`
+     <div class='user-message'>
+     <div class='message'>
+     Please be more specific on feedback
+     </div>
+     </div>
+ `);
+$("#user-input").attr("disabled", false);
+}
+else if(data === "Yes") 
+	{
+	
+	
+	outputArea.append(`
+         <div class='user-message'>
+			
+         <div class='message'>
+         "Until one has loved an animal, a part of one's soul remains unawakened." ― Anatole France
+         <br/><br/>
+         Feed any bird / animal and take a picture of it
+         </div>
+         <br/><br/>
+			<div>
+			  <input type="file" id="fileUploadchallengeTwo" accept="image/x-png,image/gif,image/jpeg" style="display:none;"> 
+			  <button id="buttonChallengeTwo">Upload Selfie with sunshine</button>  
+			  <span id="fileName"></span>
+			</div>
+         </div>
+     `);
+	 
+	
+	
+	}
+else if(data === "No")
+	{
+	
+	 outputArea.append(`
+             <div class='user-message'>
+             <div class='message'>
+             Your Welcome  Kindly close the browser
+             </div>
+             </div>
+         `);
+	}
+else
+	{
+	 $("#user-input").attr("disabled", false);
+	outputArea.append(`
+         <div class='user-message'>
+         <div class='message'>
+         Please be more specific on feedback
+         </div>
+         </div>
+     `);
+	}
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}	//question  3 
+ 
+ 
+ 
+//Question 4
+if(challengeQuestionCount == 4)
+ {
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/sentiment',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var confidence = result.confidence;
+var sentiment  = result.sentiment;
+if(confidence == "N/A" || confidence <0.5 )
+	{
+	
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+            Please be more specific on feedback
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	}
+else if(sentiment =="positive")
+	{
+	confidenceMeter +=3;
+	challengeQuestionCount++;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take third challenge!!?
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	
+	
+	}
+else if(sentiment =="negative")
+	{
+	confidenceMeter +=1;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+         Sorry if you didn't like the previous challenge. 	
+         We will try to bring more interesting challenges  
+            </div>
+            </div>
+        `);
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take third challenge!!?
+            </div>
+            </div>
+        `);
+	}
+else if(sentiment == "neutral")
+	{
+	confidenceMeter +=2;
+	challengeQuestionCount++;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take third challenge!!?
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	}
+console.log(confidenceMeter);
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}
+// end of Challenge 3  
+
+
+
+//Challenge 4
+//Question 5
+if(challengeQuestionCount == 5)
+	{
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/yesno',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var data = result.yesOrNo;
+var confidence = result.confidence;
+
+if(confidence == "NA" || confidence <0.5 )
+{
+
+outputArea.append(`
+     <div class='user-message'>
+     <div class='message'>
+     Please be more specific on feedback
+     </div>
+     </div>
+ `);
+$("#user-input").attr("disabled", false);
+}
+else if(data === "Yes") 
+	{
+	
+	
+	outputArea.append(`
+         <div class='user-message'>
+			
+         <div class='message'>
+         "If you’ve never experienced the joy of accomplishing more than you can imagine, plant a garden". – Robert Brault
+         <br/><br/>
+         Plant any green and take a selfie with it
+         </div>
+         <br/><br/>
+			<div>
+			  <input type="file" id="fileUploadchallengeThree" accept="image/x-png,image/gif,image/jpeg" style="display:none;"> 
+			  <button id="buttonChallengeThree">Upload Selfie with sunshine</button>  
+			  <span id="fileName"></span>
+			</div>
+         </div>
+     `);
+	 
+	
+	
+	}
+else if(data === "No")
+	{
+	
+	 outputArea.append(`
+             <div class='user-message'>
+             <div class='message'>
+             Your Welcome  Kindly close the browser
+             </div>
+             </div>
+         `);
+	}
+else
+	{
+	 $("#user-input").attr("disabled", false);
+	outputArea.append(`
+         <div class='user-message'>
+         <div class='message'>
+         Please be more specific on feedback
+         </div>
+         </div>
+     `);
+	}
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}	//question  4
+ 
+ 
+ 
+//Question 5
+if(challengeQuestionCount == 6)
+ {
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/sentiment',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var confidence = result.confidence;
+var sentiment  = result.sentiment;
+if(confidence == "N/A" || confidence <0.5 )
+	{
+	
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+            Please be more specific on feedback
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	}
+else if(sentiment =="positive")
+	{
+	confidenceMeter +=3;
+	challengeQuestionCount++;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take fourth challenge!!?
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	
+	
+	}
+else if(sentiment =="negative")
+	{
+	confidenceMeter +=1;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+         Sorry if you didn't like the previous challenge. 	
+         We will try to bring more interesting challenges  
+            </div>
+            </div>
+        `);
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take fourth challenge!!?
+            </div>
+            </div>
+        `);
+	}
+else if(sentiment == "neutral")
+	{
+	confidenceMeter +=2;
+	challengeQuestionCount++;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take fourth challenge!!?
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	}
+console.log(confidenceMeter);
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}
+// end of Challenge 3   
+
+
+
+//Challenge 4
+//Question 6
+if(challengeQuestionCount == 7)
+	{
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/yesno',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var data = result.yesOrNo;
+var confidence = result.confidence;
+
+if(confidence == "NA" || confidence <0.5 )
+{
+
+outputArea.append(`
+     <div class='user-message'>
+     <div class='message'>
+     Please be more specific on feedback
+     </div>
+     </div>
+ `);
+$("#user-input").attr("disabled", false);
+}
+else if(data === "Yes") 
+	{
+	
+	
+	outputArea.append(`
+         <div class='user-message'>
+			
+         <div class='message'>
+         “I visited many places, Some of them quite Exotic and far away, But I always returned to myself.” ― Dejan Stojanovic
+         <br/><br/>
+         Take a picture of a place which you like the most in your locality and share it with us
+         </div>
+         <br/><br/>
+			<div>
+			  <input type="file" id="fileUploadchallengeFour" accept="image/x-png,image/gif,image/jpeg" style="display:none;"> 
+			  <button id="buttonChallengeFour">Upload Selfie with sunshine</button>  
+			  <span id="fileName"></span>
+			</div>
+         </div>
+     `);
+	 
+	
+	
+	}
+else if(data === "No")
+	{
+	
+	 outputArea.append(`
+             <div class='user-message'>
+             <div class='message'>
+             Your Welcome  Kindly close the browser
+             </div>
+             </div>
+         `);
+	}
+else
+	{
+	 $("#user-input").attr("disabled", false);
+	outputArea.append(`
+         <div class='user-message'>
+         <div class='message'>
+         Please be more specific on feedback
+         </div>
+         </div>
+     `);
+	}
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}	//question  4
+ 
+ 
+ 
+//Question 7
+if(challengeQuestionCount == 8)
+ {
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/sentiment',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var confidence = result.confidence;
+var sentiment  = result.sentiment;
+if(confidence == "N/A" || confidence <0.5 )
+	{
+	
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+            Please be more specific on feedback
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	}
+else if(sentiment =="positive")
+	{
+	confidenceMeter +=3;
+	challengeQuestionCount++;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take fifth challenge!!?
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	
+	
+	}
+else if(sentiment =="negative")
+	{
+	confidenceMeter +=1;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+         Sorry if you didn't like the previous challenge. 	
+         We will try to bring more interesting challenges  
+            </div>
+            </div>
+        `);
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take fifth challenge!!?
+            </div>
+            </div>
+        `);
+	}
+else if(sentiment == "neutral")
+	{
+	confidenceMeter +=2;
+	challengeQuestionCount++;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take fifth challenge!!?
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	}
+console.log(confidenceMeter);
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}
+// end of Challenge 4
+
+
+
+
+
    
         });
         $(document).on("click", "#buttonChallengeOne" , function() {
@@ -427,30 +1055,13 @@ alert("error");
              var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
           
              
-             var formData = new FormData();
-             formData.append('file', $('#fileUploadchallengeOne')[0].files[0]);
+           
              
-             if (extFile=="jpg" || extFile=="jpeg" || extFile=="png"){
-            	 
-            	 $.ajax({
-            		    url: "/upload",
-            		    type: "POST",
-            		    data:formData ,
-            		   
-            		    processData: false,
-            		    contentType: false,
-            		    cache: false,
-            		    success: function () {
-            		      // Handle upload success
-            		      // ...
-            		    },
-            		    error: function () {
-            		      // Handle upload error
-            		      // ...
-            		    }
-            		  });
+             if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" ||  extFile=="tiff"){
             	 
             	 
+            	 
+            	 formData.append('file1', $('#fileUploadchallengeOne')[0].files[0]);
             	 
             	 challengeQuestionCount++;
            	  $("#buttonChallengeOne").attr("disabled", true);
@@ -481,6 +1092,193 @@ alert("error");
  			
         	  
         	});
+        
+        
+        
+        
+   //challenge 2     
+	$(document).on("click", "#buttonChallengeTwo" , function() {
+        
+        
+        	
+            $("#fileUploadchallengeTwo").click();
+          });
+        $(document).on("change", "#fileUploadchallengeTwo" , function() {
+       
+      
+        	
+        	 var fileName = $('#fileUploadchallengeTwo')[0].files[0].name;
+             var idxDot = fileName.lastIndexOf(".") + 1;
+             var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+             
+             
+           
+             
+             if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" ||  extFile=="tiff"){
+            	 
+                        	 
+            	 formData.append('file2', $('#fileUploadchallengeTwo')[0].files[0]);
+            	 
+            	 challengeQuestionCount++;
+           	  $("#buttonChallengeTwo").attr("disabled", true);
+    			 outputArea.append(`
+   		                <div class='user-message'>
+    					<div class='message'>
+   		              Uploaded succesfully
+   		                </div>
+    			 			<br/><br/>
+   		                <div class='message'>
+   		               What do you feel about challenge 2!!? ,Did you like the challenge!!? 
+   		                </div>
+   		                </div>
+   		            `);
+    			 $("#user-input").attr("disabled", false);
+            	 
+    			 
+    			 
+
+                
+             }else{
+                 alert("Only Images files are allowed!");
+             }   
+        	
+        	
+        	  //$('#fileName').text($('#fileUploadchallengeOne')[0].files[0].name);
+        	 
+ 			
+        	  
+        	});
+        //End of challenge 2 
+        
+        
+        
+        
+        //challenge 3   
+	$(document).on("click", "#buttonChallengeThree" , function() {
+        
+        
+        	
+            $("#fileUploadchallengeThree").click();
+          });
+        $(document).on("change", "#fileUploadchallengeThree" , function() {
+       
+      
+        	
+        	 var fileName = $('#fileUploadchallengeThree')[0].files[0].name;
+             var idxDot = fileName.lastIndexOf(".") + 1;
+             var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+             
+             
+           
+             
+             if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" ||  extFile=="tiff"){
+            	 
+                        	 
+            	 formData.append('file3', $('#fileUploadchallengeThree')[0].files[0]);
+            	 
+            	 challengeQuestionCount++;
+           	  $("#buttonChallengeThree").attr("disabled", true);
+    			 outputArea.append(`
+   		                <div class='user-message'>
+    					<div class='message'>
+   		              Uploaded succesfully
+   		                </div>
+    			 			<br/><br/>
+   		                <div class='message'>
+   		               What do you feel about challenge 3!!? ,Did you like the challenge!!? 
+   		                </div>
+   		                </div>
+   		            `);
+    			 $("#user-input").attr("disabled", false);
+            	 
+    			 
+    			 
+
+                
+             }else{
+                 alert("Only Images files are allowed!");
+             }   
+        	
+        	
+        	  //$('#fileName').text($('#fileUploadchallengeOne')[0].files[0].name);
+        	 
+ 			
+        	  
+        	});
+        //End of challenge 3
+        
+        
+        
+        //challenge 4   
+	$(document).on("click", "#buttonChallengeFour" , function() {
+        
+        
+        	
+            $("#fileUploadchallengeFour").click();
+          });
+        $(document).on("change", "#fileUploadchallengeFour" , function() {
+       
+      
+        	
+        	 var fileName = $('#fileUploadchallengeFour')[0].files[0].name;
+             var idxDot = fileName.lastIndexOf(".") + 1;
+             var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+             
+             
+           
+             
+             if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" ||  extFile=="tiff"){
+            	 
+                        	 
+            	 formData.append('file4', $('#fileUploadchallengeFour')[0].files[0]);
+            	 
+            	 challengeQuestionCount++;
+           	  $("#buttonChallengeFour").attr("disabled", true);
+    			 outputArea.append(`
+   		                <div class='user-message'>
+    					<div class='message'>
+   		              Uploaded succesfully
+   		                </div>
+    			 			<br/><br/>
+   		                <div class='message'>
+   		               What do you feel about challenge 4!!? ,Did you like the challenge!!? 
+   		                </div>
+   		                </div>
+   		            `);
+    			 $("#user-input").attr("disabled", false);
+            	 
+    			 $.ajax({
+    				    url: "/upload",
+    				    type: "POST",
+    				    data:formData ,
+    				   
+    				    processData: false,
+    				    contentType: false,
+    				    cache: false,
+    				    success: function () {
+    				      // Handle upload success
+    				      // ...
+    				    },
+    				    error: function () {
+    				      // Handle upload error
+    				      // ...
+    				    }
+    				  });
+    			 
+
+                
+             }else{
+                 alert("Only Images files are allowed!");
+             }   
+        	
+        	
+        	  //$('#fileName').text($('#fileUploadchallengeOne')[0].files[0].name);
+        	 
+ 			
+        	  
+        	});
+        //End of challenge 4
+        
     }); 
     </script>
 </body>

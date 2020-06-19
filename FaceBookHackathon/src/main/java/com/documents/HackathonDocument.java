@@ -1,5 +1,7 @@
 package com.documents;
 
+import java.util.List;
+
 import org.bson.types.Binary;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -13,12 +15,14 @@ public class HackathonDocument {
 	    @Field
 	    private String id;
 	    
-	    @Field
-	    private String challengeId;
 	    
-
-		@Field
-	    private Binary file;
+	    @Field
+	    private Binary videoFile;
+	    
+	    
+	    
+	    @Field
+	    private List<ChallengeDocument> documents;
 
 		public String getId() {
 			return id;
@@ -28,21 +32,14 @@ public class HackathonDocument {
 			this.id = id;
 		}
 
-		public Binary getFile() {
-			return file;
+		public List<ChallengeDocument> getDocuments() {
+			return documents;
 		}
 
-		public void setFile(Binary file) {
-			this.file = file;
+		public void setDocuments(List<ChallengeDocument> documents) {
+			this.documents = documents;
 		}
 
-		public String getChallengeId() {
-			return challengeId;
-		}
-
-		public void setChallengeId(String challengeId) {
-			this.challengeId = challengeId;
-		}
 		
 		
 		
