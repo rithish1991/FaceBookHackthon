@@ -32,16 +32,18 @@ public class FaceBookController {
 	@PostMapping("/upload")
 	public String singleFileUpload(@RequestParam("file1") MultipartFile fileOne,@RequestParam("file2") MultipartFile fileTwo,@RequestParam("file3") MultipartFile fileThree,@RequestParam("file4") MultipartFile fileFour) {
 	    try {
+	    	 long count = mongoTemplate.getCollection("hackathonDocument").countDocuments();
+	    	 count++;
 	    	HackathonDocument demoDocument = new HackathonDocument();
-	        demoDocument.setId("1995");
+	        demoDocument.setId(Long.toString(count));
 //	        demoDocument.setChallengeId(challenge);
 //	        demoDocument.setFile(new Binary(BsonBinarySubType.BINARY, multipart.getBytes()));
-	        
+	        demoDocument.setVideoFile(null);
 	        ChallengeDocument challengeOne = new ChallengeDocument();
 	        challengeOne.setChallengeId("1");
 	        challengeOne.setFile(new Binary(BsonBinarySubType.BINARY, fileOne.getBytes()));
 	        
-	        
+	       
 	        
 	        ChallengeDocument challengeTwo = new ChallengeDocument();
 	        challengeTwo.setChallengeId("2");

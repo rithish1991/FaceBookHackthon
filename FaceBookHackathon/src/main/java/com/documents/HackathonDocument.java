@@ -40,6 +40,14 @@ public class HackathonDocument {
 			this.documents = documents;
 		}
 
+		public Binary getVideoFile() {
+			return videoFile;
+		}
+
+		public void setVideoFile(Binary videoFile) {
+			this.videoFile = videoFile;
+		}
+
 		
 		
 		
