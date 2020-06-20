@@ -369,6 +369,7 @@ success: function (result) {
 		}
 	else if(sentiment =="negative")
 		{
+		 $("#user-input").attr("disabled", false);
 		confidenceMeter +=1;
 		outputArea.append(`
                 <div class='user-message'>
@@ -385,6 +386,7 @@ success: function (result) {
                 </div>
                 </div>
             `);
+		$("#user-input").attr("disabled", false);
 		}
 	else if(sentiment == "neutral")
 		{
@@ -576,6 +578,7 @@ else if(sentiment =="positive")
 else if(sentiment =="negative")
 	{
 	confidenceMeter +=1;
+	 $("#user-input").attr("disabled", false);
 	outputArea.append(`
             <div class='user-message'>
             <div class='message'>
@@ -784,6 +787,7 @@ else if(sentiment =="positive")
 	}
 else if(sentiment =="negative")
 	{
+	 $("#user-input").attr("disabled", false);
 	confidenceMeter +=1;
 	outputArea.append(`
             <div class='user-message'>
@@ -800,6 +804,7 @@ else if(sentiment =="negative")
             </div>
             </div>
         `);
+	 $("#user-input").attr("disabled", false);
 	}
 else if(sentiment == "neutral")
 	{
@@ -1009,6 +1014,7 @@ else if(sentiment =="negative")
             </div>
             </div>
         `);
+	 $("#user-input").attr("disabled", false);
 	}
 else if(sentiment == "neutral")
 	{
