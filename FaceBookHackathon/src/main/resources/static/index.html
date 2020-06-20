@@ -473,7 +473,7 @@ else if(data === "Yes")
          <br/><br/>
 			<div>
 			  <input type="file" id="fileUploadchallengeTwo" accept="image/x-png,image/gif,image/jpeg" style="display:none;"> 
-			  <button id="buttonChallengeTwo">Upload Selfie with sunshine</button>  
+			  <button id="buttonChallengeTwo">Upload Picture of Bird/Animal you fed</button>  
 			  <span id="fileName"></span>
 			</div>
          </div>
@@ -684,7 +684,7 @@ else if(data === "Yes")
          <br/><br/>
 			<div>
 			  <input type="file" id="fileUploadchallengeThree" accept="image/x-png,image/gif,image/jpeg" style="display:none;"> 
-			  <button id="buttonChallengeThree">Upload Selfie with sunshine</button>  
+			  <button id="buttonChallengeThree">Upload Picture of the green you planted</button>  
 			  <span id="fileName"></span>
 			</div>
          </div>
@@ -896,7 +896,7 @@ else if(data === "Yes")
          <br/><br/>
 			<div>
 			  <input type="file" id="fileUploadchallengeFour" accept="image/x-png,image/gif,image/jpeg" style="display:none;"> 
-			  <button id="buttonChallengeFour">Upload Selfie with sunshine</button>  
+			  <button id="buttonChallengeFour">Upload picture of your favourite spot</button>  
 			  <span id="fileName"></span>
 			</div>
          </div>
@@ -1045,6 +1045,530 @@ alert("error");
 
 
 
+//Challenge 5
+
+if(challengeQuestionCount == 9)
+{
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/yesno',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var data = result.yesOrNo;
+var confidence = result.confidence;
+
+if(confidence == "NA" || confidence <0.5 )
+{
+
+outputArea.append(`
+     <div class='user-message'>
+     <div class='message'>
+     Please be more specific on feedback
+     </div>
+     </div>
+ `);
+$("#user-input").attr("disabled", false);
+}
+else if(data === "Yes") 
+	{
+	
+	
+	outputArea.append(`
+         <div class='user-message'>
+			
+         <div class='message'>
+         “The only place where your dream becomes impossible is in your own thinking.” – Robert H Schuller
+         <br/><br/>
+         Spread a positive message/drawing/song/poem to the world and share the screenshot
+         </div>
+         <br/><br/>
+			<div>
+			  <input type="file" id="fileUploadchallengeFive" accept="image/x-png,image/gif,image/jpeg" style="display:none;"> 
+			  <button id="buttonChallengeFive">Upload Screenshot/Picture</button>  
+			  <span id="fileName"></span>
+			</div>
+         </div>
+     `);
+	 
+	
+	
+	}
+else if(data === "No")
+	{
+	
+	 outputArea.append(`
+             <div class='user-message'>
+             <div class='message'>
+             Your Welcome  Kindly close the browser
+             </div>
+             </div>
+         `);
+	}
+else
+	{
+	 $("#user-input").attr("disabled", false);
+	outputArea.append(`
+         <div class='user-message'>
+         <div class='message'>
+         Please be more specific on feedback
+         </div>
+         </div>
+     `);
+	}
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}	//question  4
+ 
+ 
+ 
+//Question 7
+if(challengeQuestionCount == 10)
+ {
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/sentiment',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var confidence = result.confidence;
+var sentiment  = result.sentiment;
+if(confidence == "N/A" || confidence <0.5 )
+	{
+	
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+            Please be more specific on feedback
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	}
+else if(sentiment =="positive")
+	{
+	confidenceMeter +=3;
+	challengeQuestionCount++;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take sixth challenge!!?
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	
+	
+	}
+else if(sentiment =="negative")
+	{
+	confidenceMeter +=1;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+         Sorry if you didn't like the previous challenge. 	
+         We will try to bring more interesting challenges  
+            </div>
+            </div>
+        `);
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take sixth challenge!!?
+            </div>
+            </div>
+        `);
+	 $("#user-input").attr("disabled", false);
+	 challengeQuestionCount++;
+	}
+else if(sentiment == "neutral")
+	{
+	confidenceMeter +=2;
+	challengeQuestionCount++;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take sixth challenge!!?
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	}
+console.log(confidenceMeter);
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}
+// end of Challenge 5
+
+//Challenge 6
+
+if(challengeQuestionCount == 11)
+{
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/yesno',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var data = result.yesOrNo;
+var confidence = result.confidence;
+
+if(confidence == "NA" || confidence <0.5 )
+{
+
+outputArea.append(`
+     <div class='user-message'>
+     <div class='message'>
+     Please be more specific on feedback
+     </div>
+     </div>
+ `);
+$("#user-input").attr("disabled", false);
+}
+else if(data === "Yes") 
+	{
+	
+	
+	outputArea.append(`
+         <div class='user-message'>
+			
+         <div class='message'>
+         From an early age I understood that cooking was never going to be a job, it’s a passion. – Gordon Ramsay
+         <br/><br/>
+         Try a new receipe and serve your Friends / Family/ Neighbour and post a picture of the food
+         </div>
+         <br/><br/>
+			<div>
+			  <input type="file" id="fileUploadchallengeSix" accept="image/x-png,image/gif,image/jpeg" style="display:none;"> 
+			  <button id="buttonChallengeSix">Upload Picture of your Cooking Magic</button>  
+			  <span id="fileName"></span>
+			</div>
+         </div>
+     `);
+	 
+	
+	
+	}
+else if(data === "No")
+	{
+	
+	 outputArea.append(`
+             <div class='user-message'>
+             <div class='message'>
+             Your Welcome  Kindly close the browser
+             </div>
+             </div>
+         `);
+	}
+else
+	{
+	 $("#user-input").attr("disabled", false);
+	outputArea.append(`
+         <div class='user-message'>
+         <div class='message'>
+         Please be more specific on feedback
+         </div>
+         </div>
+     `);
+	}
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}	//question  4
+ 
+ 
+ 
+//Question 7
+if(challengeQuestionCount == 12)
+ {
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/sentiment',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var confidence = result.confidence;
+var sentiment  = result.sentiment;
+if(confidence == "N/A" || confidence <0.5 )
+	{
+	
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+            Please be more specific on feedback
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	}
+else if(sentiment =="positive")
+	{
+	confidenceMeter +=3;
+	challengeQuestionCount++;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take seventh challenge!!?
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	
+	
+	}
+else if(sentiment =="negative")
+	{
+	confidenceMeter +=1;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+         Sorry if you didn't like the previous challenge. 	
+         We will try to bring more interesting challenges  
+            </div>
+            </div>
+        `);
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take seventh challenge!!?
+            </div>
+            </div>
+        `);
+	 $("#user-input").attr("disabled", false);
+	 challengeQuestionCount++;
+	}
+else if(sentiment == "neutral")
+	{
+	confidenceMeter +=2;
+	challengeQuestionCount++;
+	outputArea.append(`
+            <div class='user-message'>
+            <div class='message'>
+           Are you excited to take seventh challenge!!?
+            </div>
+            </div>
+        `);
+	$("#user-input").attr("disabled", false);
+	}
+console.log(confidenceMeter);
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}
+// end of Challenge 6
+
+
+
+
+
+//Challenge 7
+
+if(challengeQuestionCount == 13)
+{
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+    <div class='bot-message'>
+    <div class='message'>
+        ${message}
+    </div>
+    </div>
+`);
+
+
+
+ 
+
+$.ajax({
+url: 'https://still-shore-09941.herokuapp.com/yesno',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var data = result.yesOrNo;
+var confidence = result.confidence;
+
+if(confidence == "NA" || confidence <0.5 )
+{
+
+outputArea.append(`
+     <div class='user-message'>
+     <div class='message'>
+     Please be more specific on feedback
+     </div>
+     </div>
+ `);
+$("#user-input").attr("disabled", false);
+}
+else if(data === "Yes") 
+	{
+	
+	
+	outputArea.append(`
+         <div class='user-message'>
+			
+         <div class='message'>
+         The objective of cleaning is not just to clean, but to feel happiness living within that environment. - Marie Kondo
+         <br/><br/>
+         Decorate your living room and make it look pleasant and post a picture
+         </div>
+         <br/><br/>
+			<div>
+			  <input type="file" id="fileUploadchallengeSeven" accept="image/x-png,image/gif,image/jpeg" style="display:none;"> 
+			  <button id="buttonChallengeSeven">Upload picture of your room</button>  
+			  <span id="fileName"></span>
+			</div>
+         </div>
+     `);
+	 
+	
+	
+	}
+else if(data === "No")
+	{
+	
+	 outputArea.append(`
+             <div class='user-message'>
+             <div class='message'>
+             Your Welcome  Kindly close the browser
+             </div>
+             </div>
+         `);
+	}
+else
+	{
+	 $("#user-input").attr("disabled", false);
+	outputArea.append(`
+         <div class='user-message'>
+         <div class='message'>
+         Please be more specific on feedback
+         </div>
+         </div>
+     `);
+	}
+
+},
+error: function () {
+alert("error");
+}
+})
+
+}	//end of challenege 7
+ 
 
 
    
@@ -1256,23 +1780,7 @@ alert("error");
    		            `);
     			 $("#user-input").attr("disabled", false);
             	 
-    			 $.ajax({
-    				    url: "/upload",
-    				    type: "POST",
-    				    data:formData ,
-    				   
-    				    processData: false,
-    				    contentType: false,
-    				    cache: false,
-    				    success: function () {
-    				      // Handle upload success
-    				      // ...
-    				    },
-    				    error: function () {
-    				      // Handle upload error
-    				      // ...
-    				    }
-    				  });
+    			 
     			 
 
                 
@@ -1287,6 +1795,197 @@ alert("error");
         	  
         	});
         //End of challenge 4
+        
+        
+        
+        //challenge 5   
+	$(document).on("click", "#buttonChallengeFive" , function() {
+        
+        
+        	
+            $("#fileUploadchallengeFive").click();
+          });
+        $(document).on("change", "#fileUploadchallengeFive" , function() {
+       
+      
+        	
+        	 var fileName = $('#fileUploadchallengeFive')[0].files[0].name;
+             var idxDot = fileName.lastIndexOf(".") + 1;
+             var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+             
+             
+           
+             
+             if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" ||  extFile=="tiff"){
+            	 
+                        	 
+            	 formData.append('file5', $('#fileUploadchallengeFive')[0].files[0]);
+            	 
+            	 challengeQuestionCount++;
+           	  $("#buttonChallengeFive").attr("disabled", true);
+    			 outputArea.append(`
+   		                <div class='user-message'>
+    					<div class='message'>
+   		              Uploaded succesfully
+   		                </div>
+    			 			<br/><br/>
+   		                <div class='message'>
+   		               What do you feel about challenge 5!!? ,Did you like the challenge!!? 
+   		                </div>
+   		                </div>
+   		            `);
+    			 $("#user-input").attr("disabled", false);
+            	 
+    			 
+    			 
+
+                
+             }else{
+                 alert("Only Images files are allowed!");
+             }   
+        	
+        	
+        	  //$('#fileName').text($('#fileUploadchallengeOne')[0].files[0].name);
+        	 
+ 			
+        	  
+        	});
+        //End of challenge 5
+        
+        
+        
+        //challenge 6  
+	$(document).on("click", "#buttonChallengeSix" , function() {
+        
+        
+        	
+            $("#fileUploadchallengeSix").click();
+          });
+        $(document).on("change", "#fileUploadchallengeSix" , function() {
+       
+      
+        	
+        	 var fileName = $('#fileUploadchallengeSix')[0].files[0].name;
+             var idxDot = fileName.lastIndexOf(".") + 1;
+             var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+             
+             
+           
+             
+             if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" ||  extFile=="tiff"){
+            	 
+                        	 
+            	 formData.append('file6', $('#fileUploadchallengeSix')[0].files[0]);
+            	 
+            	 challengeQuestionCount++;
+           	  $("#buttonChallengeSix").attr("disabled", true);
+    			 outputArea.append(`
+   		                <div class='user-message'>
+    					<div class='message'>
+   		              Uploaded succesfully
+   		                </div>
+    			 			<br/><br/>
+   		                <div class='message'>
+   		               What do you feel about challenge 6!!? ,Did you like the challenge!!? 
+   		                </div>
+   		                </div>
+   		            `);
+    			 $("#user-input").attr("disabled", false);
+            	 
+    			 
+    			 
+
+                
+             }else{
+                 alert("Only Images files are allowed!");
+             }   
+        	
+        	
+        	  //$('#fileName').text($('#fileUploadchallengeOne')[0].files[0].name);
+        	 
+ 			
+        	  
+        	});
+        //End of challenge 6
+        
+        
+        
+          //challenge 7  
+	$(document).on("click", "#buttonChallengeSeven" , function() {
+        
+        
+        	
+            $("#fileUploadchallengeSeven").click();
+          });
+        $(document).on("change", "#fileUploadchallengeSeven" , function() {
+       
+      
+        	
+        	 var fileName = $('#fileUploadchallengeSeven')[0].files[0].name;
+             var idxDot = fileName.lastIndexOf(".") + 1;
+             var extFile = fileName.substr(idxDot, fileName.length).toLowerCase();
+             
+             
+           
+             
+             if (extFile=="jpg" || extFile=="jpeg" || extFile=="png" ||  extFile=="tiff"){
+            	 
+                        	 
+            	 formData.append('file7', $('#fileUploadchallengeSeven')[0].files[0]);
+            	 
+            	 
+            	 
+            	 $.ajax({
+         		    url: "/upload",
+         		    type: "POST",
+         		    data:formData ,
+         		   
+         		    processData: false,
+         		    contentType: false,
+         		    cache: false,
+         		    success: function (response) {
+         		      
+         		    	alert("sessionId " +response);
+         		    	challengeQuestionCount++;
+         	           	  $("#buttonChallengeSeven").attr("disabled", true);
+         	    			 outputArea.append(`
+         	   		                <div class='user-message'>
+         	    					<div class='message'>
+         	   		              Uploaded succesfully
+         	   		                </div>
+         	    			 			<br/><br/>
+         	   		                <div class='message'>
+         	   		               What do you feel about challenge 7!!? ,Did you like the challenge!!? 
+         	   		                </div>
+         	   		                </div>
+         	   		            `);
+         	    			 $("#user-input").attr("disabled", false);
+         		    	
+         		    },
+         		    error: function () {
+         		      // Handle upload error
+         		      // ...
+         		    }
+         		  });
+            	 
+            	 
+            	 
+    			 
+    			 
+
+                
+             }else{
+                 alert("Only Images files are allowed!");
+             }   
+        	
+        	
+        	  //$('#fileName').text($('#fileUploadchallengeOne')[0].files[0].name);
+        	 
+ 			
+        	  
+        	});
+        //End of challenge 7
+        
         
     }); 
     </script>
