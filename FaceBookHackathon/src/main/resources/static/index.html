@@ -1717,9 +1717,9 @@ function finalActions()
 		data: JSON.stringify({"_id":sessionId }),
 		success: function (result) {
 
-		alert("response from flask " +result);
+		
 		console.log(result);
-		alert(sessionId);
+		
 		var jsonData  = new FormData();
 		jsonData.append('id', sessionId);
 		
