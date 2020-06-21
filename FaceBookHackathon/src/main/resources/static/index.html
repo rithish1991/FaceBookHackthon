@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://thymeleaf.org">  
 
 <head>
     <meta charset="UTF-8">
@@ -78,21 +78,51 @@
             padding: 8px;
         }
         
-        //file css
-        
- 
+        //progress bar
+        .meter { 
+    height: 30px;
+    position: relative;
+    background: #f3efe6;
+    overflow: hidden;
+}
 
+.meter span {
+    display: block;
+    height: 100%;
+}
+
+.progress {
+    background-color:    #009900;
+;
+    animation: progressBar 3s ease-in-out;
+    animation-fill-mode:both; 
+}
+
+@keyframes progressBar {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+  
+ 	
+     
+ 	
 
         
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
 </head>
 
 <body>
+ 
     <div class="chat-output" id="chat-output">
         <div class="user-message">
             <div class="message">Disclaimer Message. Do you want to continue?</div>
+            
         </div>
+        
+               
+        
     </div>
 
     <div class="chat-input">
@@ -107,9 +137,12 @@
         var outputArea = $("#chat-output");
         var challengeQuestionCount = 0;
         var confidenceMeter = 0;
+        var sessionId = "";
         var formData = new FormData();
         //formData.append('file1', $('#fileUploadchallengeOne')[0].files[0]);
         //formData.append('fil', "1");
+        	 
+        
         $("#user-input-form").on("submit", function (e) {
         	 e.preventDefault();
            if(challengeQuestionCount == 0)
@@ -130,7 +163,7 @@
              
 
 	$.ajax({
-    url: 'https://still-shore-09941.herokuapp.com/yesno',
+    url: 'https://young-cove-81657.herokuapp.com/yesno',
     headers: {
         'Content-Type': 'application/json',
 	
@@ -167,6 +200,7 @@
 		                <div class='message'>
 		                Are you ready for the challenge 1!!!?
 		                </div>
+		               
 		                </div>
 		            `);
 			 
@@ -226,7 +260,7 @@
             
 
 	$.ajax({
-   url: 'https://still-shore-09941.herokuapp.com/yesno',
+   url: 'https://young-cove-81657.herokuapp.com/yesno',
    headers: {
        'Content-Type': 'application/json',
 	
@@ -327,7 +361,7 @@
      
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/sentiment',
+url: 'https://young-cove-81657.herokuapp.com/sentiment',
 headers: {
 'Content-Type': 'application/json',
 
@@ -433,7 +467,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/yesno',
+url: 'https://young-cove-81657.herokuapp.com/yesno',
 headers: {
 'Content-Type': 'application/json',
 
@@ -536,7 +570,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/sentiment',
+url: 'https://young-cove-81657.herokuapp.com/sentiment',
 headers: {
 'Content-Type': 'application/json',
 
@@ -644,7 +678,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/yesno',
+url: 'https://young-cove-81657.herokuapp.com/yesno',
 headers: {
 'Content-Type': 'application/json',
 
@@ -747,7 +781,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/sentiment',
+url: 'https://young-cove-81657.herokuapp.com/sentiment',
 headers: {
 'Content-Type': 'application/json',
 
@@ -856,7 +890,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/yesno',
+url: 'https://young-cove-81657.herokuapp.com/yesno',
 headers: {
 'Content-Type': 'application/json',
 
@@ -959,7 +993,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/sentiment',
+url: 'https://young-cove-81657.herokuapp.com/sentiment',
 headers: {
 'Content-Type': 'application/json',
 
@@ -1067,7 +1101,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/yesno',
+url: 'https://young-cove-81657.herokuapp.com/yesno',
 headers: {
 'Content-Type': 'application/json',
 
@@ -1170,7 +1204,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/sentiment',
+url: 'https://young-cove-81657.herokuapp.com/sentiment',
 headers: {
 'Content-Type': 'application/json',
 
@@ -1276,7 +1310,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/yesno',
+url: 'https://young-cove-81657.herokuapp.com/yesno',
 headers: {
 'Content-Type': 'application/json',
 
@@ -1379,7 +1413,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/sentiment',
+url: 'https://young-cove-81657.herokuapp.com/sentiment',
 headers: {
 'Content-Type': 'application/json',
 
@@ -1489,7 +1523,7 @@ outputArea.append(`
  
 
 $.ajax({
-url: 'https://still-shore-09941.herokuapp.com/yesno',
+url: 'https://young-cove-81657.herokuapp.com/yesno',
 headers: {
 'Content-Type': 'application/json',
 
@@ -1569,9 +1603,161 @@ alert("error");
 }
 })
 
-}	//end of challenege 7
+}	
  
+if(challengeQuestionCount == 14)
+{
+$("#user-input").attr("disabled", true);
+var message = $("#user-input").val();
+$("#user-input").val("");
+outputArea.append(`
+   <div class='bot-message'>
+   <div class='message'>
+       ${message}
+   </div>
+   </div>
+`);
 
+
+
+
+
+$.ajax({
+url: 'https://young-cove-81657.herokuapp.com/sentiment',
+headers: {
+'Content-Type': 'application/json',
+
+},
+type: "POST", /* or type:"GET" or type:"PUT" */
+dataType: "json",
+crossDomain: true,
+data: JSON.stringify({"text":message }),
+success: function (result) {
+
+console.log(result);
+var confidence = result.confidence;
+var sentiment  = result.sentiment;
+if(confidence == "N/A" || confidence <0.5 )
+	{
+	
+	outputArea.append(`
+           <div class='user-message'>
+           <div class='message'>
+           Please be more specific on feedback
+           </div>
+           </div>
+       `);
+	$("#user-input").attr("disabled", false);
+	}
+else if(sentiment =="positive")
+	{
+	confidenceMeter +=3;
+	challengeQuestionCount++;
+	$("#user-input").attr("disabled", false);
+	finalActions();
+	
+	}
+else if(sentiment =="negative")
+	{
+	confidenceMeter +=1;
+	
+	 $("#user-input").attr("disabled", false);
+	 challengeQuestionCount++;
+	 finalActions();
+	}
+else if(sentiment == "neutral")
+	{
+	confidenceMeter +=2;
+	challengeQuestionCount++;
+	
+	$("#user-input").attr("disabled", false);
+	finalActions();
+	}
+console.log(confidenceMeter);
+
+},
+error: function () {
+alert("error");
+}
+})
+
+} //end of challenge 7
+ 
+function finalActions()
+{
+	outputArea.append(`
+                <div class='user-message'>
+				
+                <div class='message'>
+            Thanks for believing in yourself and tried to give us a chance to help you!!!
+        You have successfully completed seven days of feel good challenges 
+        We hope that these challenges help you understand yourself a bit more and enjoy each and every moment in life.
+        Not only that we want to surprise you with some love from us to make your memories of these days beautiful.
+                </div>
+        <div id="loading">
+    
+    <img src="loading.gif" /> 
+    	 </div>
+    	 
+    	 
+    	 
+    	 
+  </div> `);
+	
+	
+	$.ajax({
+		url: 'https://young-cove-81657.herokuapp.com/image',
+		headers: {
+		'Content-Type': 'application/json',
+
+		},
+		type: "POST", /* or type:"GET" or type:"PUT" */
+		dataType: "json",
+		crossDomain: true,
+		data: JSON.stringify({"_id":sessionId }),
+		success: function (result) {
+
+		alert("response from flask " +result);
+		console.log(result);
+		alert(sessionId);
+		var jsonData  = new FormData();
+		jsonData.append('id', sessionId);
+		
+		$.ajax({
+		    url: "/retreive",
+		    type: "POST",
+		    crossDomain: true,
+		    data: jsonData,
+		   
+		    processData: false,
+		    contentType: false,
+		    cache: false,
+		    success: function (response) {
+		    	var mp4 = "data:video/mp4;base64,";
+		    	var webm = "data:video/webm;base64,";
+		    	mp4 = mp4 + response;
+		    	webm = webm + response;
+		    	$("#loading").attr("style", "display:none");
+		      var video = '<video width="400" controls> <source src = '+webm+'> <source src = '+mp4+'>Your browser does not support HTML video. </video>';
+		    	outputArea.append(video);
+		             
+		    	
+		    	
+		    },
+		    error: function () {
+		      // Handle upload error
+		      // ...
+		    }
+		  });
+
+		},
+		error: function () {
+		alert("error");
+		}
+		})
+	
+		
+}
 
    
         });
@@ -1934,7 +2120,7 @@ alert("error");
             	 
                         	 
             	 formData.append('file7', $('#fileUploadchallengeSeven')[0].files[0]);
-            	 
+            	 $("#buttonChallengeSeven").attr("disabled", true);
             	 
             	 
             	 $.ajax({
@@ -1946,10 +2132,12 @@ alert("error");
          		    contentType: false,
          		    cache: false,
          		    success: function (response) {
-         		      
-         		    	alert("sessionId " +response);
+         		    	
+         		    	
+         		    	sessionId = response;
+         		    	
          		    	challengeQuestionCount++;
-         	           	  $("#buttonChallengeSeven").attr("disabled", true);
+         	           	 
          	    			 outputArea.append(`
          	   		                <div class='user-message'>
          	    					<div class='message'>
@@ -1962,6 +2150,7 @@ alert("error");
          	   		                </div>
          	   		            `);
          	    			 $("#user-input").attr("disabled", false);
+         	    			
          		    	
          		    },
          		    error: function () {

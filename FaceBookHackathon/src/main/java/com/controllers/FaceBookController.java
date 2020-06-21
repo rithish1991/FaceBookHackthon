@@ -1,12 +1,22 @@
 package com.controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.BasicQuery;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.gridfs.GridFsOperations;
+import org.springframework.data.mongodb.gridfs.GridFsTemplate;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.stereotype.Controller;
@@ -16,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.documents.ChallengeDocument;
 import com.documents.HackathonDocument;
+import com.mongodb.client.gridfs.model.GridFSFile;
 
 //import com.mongodb.MongoClient;
 //import com.mongodb.MongoClientURI;
@@ -28,6 +39,24 @@ public class FaceBookController {
 	
 	@Autowired
 	MongoTemplate mongoTemplate;
+	
+	
+	
+	
+	@PostMapping("/retreive")
+	public byte[] retreiveFile(@RequestParam("id") String id) throws IOException
+	{
+		
+		
+		Query query = new Query();
+		query.addCriteria(Criteria.where("id").is(id));
+		HackathonDocument document = mongoTemplate.findOne(query,HackathonDocument.class);
+		Binary file = document.getDocument().getVideo_file();
+		      
+		return file.getData();
+	}
+	
+	
 	
 	@PostMapping("/upload")
 	public String singleFileUpload(@RequestParam("file1") MultipartFile fileOne,@RequestParam("file2") MultipartFile fileTwo,@RequestParam("file3") MultipartFile fileThree,@RequestParam("file4") MultipartFile fileFour,@RequestParam("file5") MultipartFile fileFive,
@@ -43,7 +72,7 @@ public class FaceBookController {
 	        demoDocument.setId(Long.toString(count));
 //	        demoDocument.setChallengeId(challenge);
 //	        demoDocument.setFile(new Binary(BsonBinarySubType.BINARY, multipart.getBytes()));
-	        demoDocument.setVideoFile(null);
+	       
 	        ChallengeDocument challengeOne = new ChallengeDocument();
 	        challengeOne.setChallengeId("1");
 	        challengeOne.setFile(new Binary(BsonBinarySubType.BINARY, fileOne.getBytes()));

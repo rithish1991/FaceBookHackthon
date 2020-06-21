@@ -9,7 +9,11 @@ import org.springframework.context.annotation.ComponentScan;
 public class FaceBookHackathonApplication {
 
 	//Add controllers here
-	//
+	//https://young-cove-81657.herokuapp.com/yesno 
+//	https://young-cove-81657.herokuapp.com/sentiment
+//	https://young-cove-81657.herokuapp.com/image
+
+	
 	
 	
 	

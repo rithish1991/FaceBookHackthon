@@ -17,12 +17,14 @@ public class HackathonDocument {
 	    
 	    
 	    @Field
-	    private Binary videoFile;
+	    private document document;
 	    
 	    
 	    
 	    @Field
 	    private List<ChallengeDocument> documents;
+	    
+	    
 
 		public String getId() {
 			return id;
@@ -40,13 +42,18 @@ public class HackathonDocument {
 			this.documents = documents;
 		}
 
-		public Binary getVideoFile() {
-			return videoFile;
+		public document getDocument() {
+			return document;
 		}
 
-		public void setVideoFile(Binary videoFile) {
-			this.videoFile = videoFile;
+		public void setDocument(document document) {
+			this.document = document;
 		}
+
+		
+		
+
+		
 
 		
 		
