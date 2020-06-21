@@ -1694,7 +1694,7 @@ function finalActions()
         We hope that these challenges help you understand yourself a bit more and enjoy each and every moment in life.
         Not only that we want to surprise you with some love from us to make your memories of these days beautiful.
                 </div>
-        <div id="loading">
+        <div id="loadingTwo">
     
     <img src="loading.gif" /> 
     	 </div>
@@ -1716,7 +1716,7 @@ function finalActions()
 		crossDomain: true,
 		data: JSON.stringify({"_id":sessionId }),
 		success: function (result) {
-
+		alert("response from flask " +result);
 		
 		console.log(result);
 		
@@ -1737,7 +1737,7 @@ function finalActions()
 		    	var webm = "data:video/webm;base64,";
 		    	mp4 = mp4 + response;
 		    	webm = webm + response;
-		    	$("#loading").attr("style", "display:none");
+		    	$("#loadingTwo").attr("style", "display:none");
 		      var video = '<video width="400" controls> <source src = '+webm+'> <source src = '+mp4+'>Your browser does not support HTML video. </video>';
 		    	outputArea.append(video);
 		             
@@ -1745,14 +1745,13 @@ function finalActions()
 		    	
 		    },
 		    error: function () {
-		      // Handle upload error
-		      // ...
+		    	alert("error from java endpoint");
 		    }
 		  });
 
 		},
 		error: function () {
-		alert("error");
+		alert("error from flask endpoint");
 		}
 		})
 	
@@ -2121,8 +2120,11 @@ function finalActions()
                         	 
             	 formData.append('file7', $('#fileUploadchallengeSeven')[0].files[0]);
             	 $("#buttonChallengeSeven").attr("disabled", true);
-            	 
-            	 
+            	 outputArea.append(`
+            	 <div id="loading">
+            	    
+            	    <img src="loading.gif" /> 
+            	    	 </div>`);
             	 $.ajax({
          		    url: "/upload",
          		    type: "POST",
@@ -2133,7 +2135,7 @@ function finalActions()
          		    cache: false,
          		    success: function (response) {
          		    	
-         		    	
+         		    	$("#loading").attr("style", "display:none");
          		    	sessionId = response;
          		    	
          		    	challengeQuestionCount++;

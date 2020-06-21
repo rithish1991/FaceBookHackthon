@@ -52,7 +52,7 @@ public class FaceBookController {
 		query.addCriteria(Criteria.where("id").is(id));
 		HackathonDocument document = mongoTemplate.findOne(query,HackathonDocument.class);
 		Binary file = document.getDocument().getVideo_file();
-		      
+		mongoTemplate.findAndRemove(query, HackathonDocument.class);
 		return file.getData();
 	}
 	
