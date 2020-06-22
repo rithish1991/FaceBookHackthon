@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DBOT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><
+    <title>Olive the Bot</title>
     <style>
         @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700);
 
@@ -69,7 +70,10 @@
             border: 1px solid #ccc;
             border-bottom: 0;
         }
-
+	
+	
+	
+	
         .chat-input .user-input {
             width: 100%;
             font-size: 2rem;
@@ -78,12 +82,12 @@
             padding: 8px;
         }
         
-        //progress bar
-        .meter { 
-    height: 30px;
+   .meter { 
+    height: 50px;
     position: relative;
     background: #f3efe6;
     overflow: hidden;
+    border-radius: 12px;
 }
 
 .meter span {
@@ -92,8 +96,7 @@
 }
 
 .progress {
-    background-color:    #009900;
-;
+    background-color: #4CAF50;
     animation: progressBar 3s ease-in-out;
     animation-fill-mode:both; 
 }
@@ -102,9 +105,25 @@
   0% { width: 0; }
   100% { width: 100%; }
 }
-  
- 	
-     
+ 
+ .fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
  	
 
         
@@ -115,14 +134,32 @@
 
 <body>
  
+ 
     <div class="chat-output" id="chat-output">
         <div class="user-message">
-            <div class="message">Disclaimer Message. Do you want to continue?</div>
+        <div class="message" style="background-color: #ffb84d;color: black;">
+Hey, I am Olive the Bot. I am here to help you relieve your stress. We have a set of 7 challenges for you and once you finish your challenges you will be given a surprise from me.        
+        </div>
+         
             
         </div>
-        
-               
-        
+         <div class="user-message">
+         
+      
+             <div class="message" style="background-color: #ffff66; color: black;">
+              Disclaimer –<br/>
+         1)Prefer using Chrome or Mozilla Firefox or Safari browser <br/>
+       
+            2)Upload images less than 3mb in size<br/>
+            3) You have to complete all the 7 challenges in order to get the surprise<br/>
+            4) Remember to add on your feedback after every task which will help me to read your mind better<br/>
+           
+           
+            </div>
+            <br/><br/>
+            <div class="message">This will be fun!!! Do you wish to proceed?
+            </div>
+        </div>
     </div>
 
     <div class="chat-input">
@@ -142,7 +179,6 @@
         //formData.append('file1', $('#fileUploadchallengeOne')[0].files[0]);
         //formData.append('fil', "1");
         	 
-        
         $("#user-input-form").on("submit", function (e) {
         	 e.preventDefault();
            if(challengeQuestionCount == 0)
@@ -184,7 +220,8 @@
 		outputArea.append(`
                 <div class='user-message'>
                 <div class='message'>
-                Please be more specific on feedback
+                I am still learning. Could you be more specific?
+
                 </div>
                 </div>
             `);
@@ -225,7 +262,8 @@
 			outputArea.append(`
 	                <div class='user-message'>
 	                <div class='message'>
-	                Please be more specific on feedback
+	                I am still learning. Could you be more specific?
+
 	                </div>
 	                </div>
 	            `);
@@ -281,7 +319,8 @@
 		outputArea.append(`
                 <div class='user-message'>
                 <div class='message'>
-                Please be more specific on feedback
+                I am still learning. Could you be more specific?
+
                 </div>
                 </div>
             `);
@@ -294,7 +333,7 @@
 			outputArea.append(`
 	                <div class='user-message'>
 					
-	                <div class='message'>
+	                <div class='message' style='background-color: #9ae5e5; color: black;'>
 	                “When you arise in the morning, think of what a precious privilege it is to be alive-to breathe, to think, to enjoy, to love.” -Marcus Aurelius
 	                <br/><br/>
 	                Take a selfie early in the morning with a Tea/Coffee having sun at the background
@@ -328,7 +367,8 @@
 			outputArea.append(`
 	                <div class='user-message'>
 	                <div class='message'>
-	                Please be more specific on feedback
+	                I am still learning. Could you be more specific?
+
 	                </div>
 	                </div>
 	            `);
@@ -381,7 +421,8 @@ success: function (result) {
 		outputArea.append(`
                 <div class='user-message'>
                 <div class='message'>
-                Please be more specific on feedback
+                I am still learning. Could you be more specific?
+
                 </div>
                 </div>
             `);
@@ -488,7 +529,8 @@ if(confidence == "NA" || confidence <0.5 )
 outputArea.append(`
      <div class='user-message'>
      <div class='message'>
-     Please be more specific on feedback
+     I am still learning. Could you be more specific?
+
      </div>
      </div>
  `);
@@ -501,7 +543,7 @@ else if(data === "Yes")
 	outputArea.append(`
          <div class='user-message'>
 			
-         <div class='message'>
+         <div class='message' style='background-color: #9ae5e5; color: black;'>
          "Until one has loved an animal, a part of one's soul remains unawakened." ― Anatole France
          <br/><br/>
          Feed any bird / animal and take a picture of it
@@ -535,7 +577,8 @@ else
 	outputArea.append(`
          <div class='user-message'>
          <div class='message'>
-         Please be more specific on feedback
+         I am still learning. Could you be more specific?
+
          </div>
          </div>
      `);
@@ -590,7 +633,8 @@ if(confidence == "N/A" || confidence <0.5 )
 	outputArea.append(`
             <div class='user-message'>
             <div class='message'>
-            Please be more specific on feedback
+            I am still learning. Could you be more specific?
+
             </div>
             </div>
         `);
@@ -699,7 +743,8 @@ if(confidence == "NA" || confidence <0.5 )
 outputArea.append(`
      <div class='user-message'>
      <div class='message'>
-     Please be more specific on feedback
+     I am still learning. Could you be more specific?
+
      </div>
      </div>
  `);
@@ -712,7 +757,7 @@ else if(data === "Yes")
 	outputArea.append(`
          <div class='user-message'>
 			
-         <div class='message'>
+         <div class='message' style='background-color: #9ae5e5; color: black;'>
          "If you’ve never experienced the joy of accomplishing more than you can imagine, plant a garden". – Robert Brault
          <br/><br/>
          Plant any green and take a selfie with it
@@ -746,7 +791,8 @@ else
 	outputArea.append(`
          <div class='user-message'>
          <div class='message'>
-         Please be more specific on feedback
+         I am still learning. Could you be more specific?
+
          </div>
          </div>
      `);
@@ -801,7 +847,8 @@ if(confidence == "N/A" || confidence <0.5 )
 	outputArea.append(`
             <div class='user-message'>
             <div class='message'>
-            Please be more specific on feedback
+            I am still learning. Could you be more specific?
+
             </div>
             </div>
         `);
@@ -911,7 +958,8 @@ if(confidence == "NA" || confidence <0.5 )
 outputArea.append(`
      <div class='user-message'>
      <div class='message'>
-     Please be more specific on feedback
+     I am still learning. Could you be more specific?
+
      </div>
      </div>
  `);
@@ -924,7 +972,7 @@ else if(data === "Yes")
 	outputArea.append(`
          <div class='user-message'>
 			
-         <div class='message'>
+         <div class='message' style='background-color: #9ae5e5; color: black;'>
          “I visited many places, Some of them quite Exotic and far away, But I always returned to myself.” ― Dejan Stojanovic
          <br/><br/>
          Take a picture of a place which you like the most in your locality and share it with us
@@ -958,7 +1006,8 @@ else
 	outputArea.append(`
          <div class='user-message'>
          <div class='message'>
-         Please be more specific on feedback
+         I am still learning. Could you be more specific?
+
          </div>
          </div>
      `);
@@ -1013,7 +1062,8 @@ if(confidence == "N/A" || confidence <0.5 )
 	outputArea.append(`
             <div class='user-message'>
             <div class='message'>
-            Please be more specific on feedback
+            I am still learning. Could you be more specific?
+
             </div>
             </div>
         `);
@@ -1122,7 +1172,8 @@ if(confidence == "NA" || confidence <0.5 )
 outputArea.append(`
      <div class='user-message'>
      <div class='message'>
-     Please be more specific on feedback
+     I am still learning. Could you be more specific?
+
      </div>
      </div>
  `);
@@ -1133,9 +1184,9 @@ else if(data === "Yes")
 	
 	
 	outputArea.append(`
-         <div class='user-message'>
+         <div class='user-message' >
 			
-         <div class='message'>
+         <div class='message' style='background-color: #9ae5e5; color: black;'>
          “The only place where your dream becomes impossible is in your own thinking.” – Robert H Schuller
          <br/><br/>
          Spread a positive message/drawing/song/poem to the world and share the screenshot
@@ -1169,7 +1220,8 @@ else
 	outputArea.append(`
          <div class='user-message'>
          <div class='message'>
-         Please be more specific on feedback
+         I am still learning. Could you be more specific?
+
          </div>
          </div>
      `);
@@ -1224,7 +1276,8 @@ if(confidence == "N/A" || confidence <0.5 )
 	outputArea.append(`
             <div class='user-message'>
             <div class='message'>
-            Please be more specific on feedback
+            I am still learning. Could you be more specific?
+
             </div>
             </div>
         `);
@@ -1331,7 +1384,8 @@ if(confidence == "NA" || confidence <0.5 )
 outputArea.append(`
      <div class='user-message'>
      <div class='message'>
-     Please be more specific on feedback
+     I am still learning. Could you be more specific?
+
      </div>
      </div>
  `);
@@ -1344,7 +1398,7 @@ else if(data === "Yes")
 	outputArea.append(`
          <div class='user-message'>
 			
-         <div class='message'>
+         <div class='message' style='background-color: #9ae5e5; color: black;'>
          From an early age I understood that cooking was never going to be a job, it’s a passion. – Gordon Ramsay
          <br/><br/>
          Try a new receipe and serve your Friends / Family/ Neighbour and post a picture of the food
@@ -1378,7 +1432,8 @@ else
 	outputArea.append(`
          <div class='user-message'>
          <div class='message'>
-         Please be more specific on feedback
+         I am still learning. Could you be more specific?
+
          </div>
          </div>
      `);
@@ -1433,7 +1488,8 @@ if(confidence == "N/A" || confidence <0.5 )
 	outputArea.append(`
             <div class='user-message'>
             <div class='message'>
-            Please be more specific on feedback
+            I am still learning. Could you be more specific?
+
             </div>
             </div>
         `);
@@ -1544,7 +1600,8 @@ if(confidence == "NA" || confidence <0.5 )
 outputArea.append(`
      <div class='user-message'>
      <div class='message'>
-     Please be more specific on feedback
+     I am still learning. Could you be more specific?
+
      </div>
      </div>
  `);
@@ -1557,7 +1614,7 @@ else if(data === "Yes")
 	outputArea.append(`
          <div class='user-message'>
 			
-         <div class='message'>
+         <div class='message' style='background-color: #9ae5e5; color: black;'>
          The objective of cleaning is not just to clean, but to feel happiness living within that environment. - Marie Kondo
          <br/><br/>
          Decorate your living room and make it look pleasant and post a picture
@@ -1591,7 +1648,8 @@ else
 	outputArea.append(`
          <div class='user-message'>
          <div class='message'>
-         Please be more specific on feedback
+         I am still learning. Could you be more specific?
+
          </div>
          </div>
      `);
@@ -1643,7 +1701,8 @@ if(confidence == "N/A" || confidence <0.5 )
 	outputArea.append(`
            <div class='user-message'>
            <div class='message'>
-           Please be more specific on feedback
+           I am still learning. Could you be more specific?
+
            </div>
            </div>
        `);
@@ -1685,6 +1744,47 @@ alert("error");
  
 function finalActions()
 {
+	
+	confidenceMeter  = Math.round(confidenceMeter*100/21);
+	
+	var smiley ="";
+	if(confidenceMeter>0 && confidenceMeter<=20)
+		{
+		smiley = "&#128532";
+		}
+	if(confidenceMeter>20 && confidenceMeter<=40)
+	{
+		smiley = "&#128522";
+	}
+	if(confidenceMeter>40 && confidenceMeter<=60)
+	{
+		smiley = "&#128515";
+	}
+	if(confidenceMeter>60 && confidenceMeter<=80)
+	{
+		smiley = "&#128526";
+	}
+	if(confidenceMeter>80 && confidenceMeter<=100)
+	{
+		smiley = "&#128525 ";
+	}
+	
+	
+	
+	
+	
+	outputArea.append(`
+            <div class='user-message'>
+			
+            <div class='message'>
+            We have calculated based on your feedback, your liking for the challenges out of 100 to be 
+            </div>
+            
+            </div> `);
+	
+	var progressMeter  = '<div><div class="meter"><span  style="color:white;width:'+confidenceMeter+'%;"><span class="progress" align="center"> '+smiley+'  '+confidenceMeter+'%   '+smiley+' </span></span> </div> </div> ';
+	outputArea.append(progressMeter);
+	  
 	outputArea.append(`
                 <div class='user-message'>
 				
@@ -1694,6 +1794,9 @@ function finalActions()
         We hope that these challenges help you understand yourself a bit more and enjoy each and every moment in life.
         Not only that we want to surprise you with some love from us to make your memories of these days beautiful.
                 </div>
+            
+           
+            
         <div id="loadingTwo">
     
     <img src="loading.gif" /> 
@@ -1716,7 +1819,7 @@ function finalActions()
 		crossDomain: true,
 		data: JSON.stringify({"_id":sessionId }),
 		success: function (result) {
-		alert("response from flask " +result);
+		
 		
 		console.log(result);
 		
@@ -1738,9 +1841,15 @@ function finalActions()
 		    	mp4 = mp4 + response;
 		    	webm = webm + response;
 		    	$("#loadingTwo").attr("style", "display:none");
+		    	
+		    	 
+		    	
 		      var video = '<video width="400" controls> <source src = '+webm+'> <source src = '+mp4+'>Your browser does not support HTML video. </video>';
-		    	outputArea.append(video);
-		             
+		    outputArea.append(video);
+		    outputArea.append(`
+		    <a href="http://www.facebook.com/sharer.php?u=https://simplesharebuttons.com" target="_blank">
+	        <img src="https://simplesharebuttons.com/images/somacro/facebook.png" alt="Facebook" />Share on Facebook
+	    </a>`);
 		    	
 		    	
 		    },
@@ -1792,7 +1901,8 @@ function finalActions()
    		                </div>
     			 			<br/><br/>
    		                <div class='message'>
-   		               What do you feel about challenge 1!!? ,Did you like the challenge!!? 
+   		               What do you feel about challenge 1!!? ,Hey... Hope you liked my first challenge . Let me know about how you felt?
+
    		                </div>
    		                </div>
    		            `);
@@ -1848,7 +1958,7 @@ function finalActions()
    		                </div>
     			 			<br/><br/>
    		                <div class='message'>
-   		               What do you feel about challenge 2!!? ,Did you like the challenge!!? 
+   		               What do you feel about challenge 2!!? ,Hey... Hope you liked my second challenge . Let me know about how you felt?
    		                </div>
    		                </div>
    		            `);
@@ -1905,7 +2015,7 @@ function finalActions()
    		                </div>
     			 			<br/><br/>
    		                <div class='message'>
-   		               What do you feel about challenge 3!!? ,Did you like the challenge!!? 
+   		               What do you feel about challenge 3!!? ,Hey... Hope you liked my third challenge . Let me know about how you felt?
    		                </div>
    		                </div>
    		            `);
@@ -1961,7 +2071,7 @@ function finalActions()
    		                </div>
     			 			<br/><br/>
    		                <div class='message'>
-   		               What do you feel about challenge 4!!? ,Did you like the challenge!!? 
+   		               What do you feel about challenge 4!!? ,Hey... Hope you liked my fourth challenge . Let me know about how you felt?
    		                </div>
    		                </div>
    		            `);
@@ -2017,7 +2127,7 @@ function finalActions()
    		                </div>
     			 			<br/><br/>
    		                <div class='message'>
-   		               What do you feel about challenge 5!!? ,Did you like the challenge!!? 
+   		               What do you feel about challenge 5!!? ,Hey... Hope you liked my fifth challenge . Let me know about how you felt?
    		                </div>
    		                </div>
    		            `);
@@ -2073,7 +2183,7 @@ function finalActions()
    		                </div>
     			 			<br/><br/>
    		                <div class='message'>
-   		               What do you feel about challenge 6!!? ,Did you like the challenge!!? 
+   		               What do you feel about challenge 6!!? ,Hey... Hope you liked my sixth challenge . Let me know about how you felt? 
    		                </div>
    		                </div>
    		            `);
@@ -2147,7 +2257,7 @@ function finalActions()
          	   		                </div>
          	    			 			<br/><br/>
          	   		                <div class='message'>
-         	   		               What do you feel about challenge 7!!? ,Did you like the challenge!!? 
+         	   		               What do you feel about challenge 7!!? ,Hey... Hope you liked my seventh challenge . Let me know about how you felt?
          	   		                </div>
          	   		                </div>
          	   		            `);

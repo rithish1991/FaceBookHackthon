@@ -3,6 +3,7 @@ package com.controllers;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -66,6 +67,8 @@ public class FaceBookController {
 		
 		long count = 0;
 	    try {
+	    	UUID idOne = UUID.randomUUID();
+	    	
 	    	  count = mongoTemplate.getCollection("hackathonDocument").countDocuments();
 	    	 count++;
 	    	HackathonDocument demoDocument = new HackathonDocument();
