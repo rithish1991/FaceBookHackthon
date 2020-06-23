@@ -64,15 +64,16 @@ public class FaceBookController {
 			@RequestParam("file6") MultipartFile fileSix, @RequestParam("file7") MultipartFile fileSeven
 			) 
 	{
-		
+		String sessionId = "";
 		long count = 0;
 	    try {
 	    	UUID idOne = UUID.randomUUID();
 	    	
 	    	  count = mongoTemplate.getCollection("hackathonDocument").countDocuments();
 	    	 count++;
+	    	  sessionId = idOne.toString()+Long.toString(count);
 	    	HackathonDocument demoDocument = new HackathonDocument();
-	        demoDocument.setId(Long.toString(count));
+	        demoDocument.setId(sessionId);
 //	        demoDocument.setChallengeId(challenge);
 //	        demoDocument.setFile(new Binary(BsonBinarySubType.BINARY, multipart.getBytes()));
 	       
@@ -129,7 +130,7 @@ public class FaceBookController {
 	        e.printStackTrace();
 	        return "failure";
 	    }
-	    return Long.toString(count);
+	    return sessionId;
 	}
 
 }
