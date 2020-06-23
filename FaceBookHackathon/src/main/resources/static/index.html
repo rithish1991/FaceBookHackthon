@@ -177,7 +177,7 @@ Hey, I am Olive the Bot. I am here to help you relieve your stress. We have a se
 
     <div class="chat-input">
         <form action="#0" id="user-input-form">
-            <input type="text" id="user-input" class="user-input" placeholder="Talk to the bot.">
+            <input autofocus="autofocus" type="text" id="user-input" class="user-input" placeholder="Talk to the bot.">
 	
         </form>
     </div>
@@ -492,6 +492,7 @@ success: function (result) {
                 </div>
                 </div>
             `);
+		
 		$("#user-input").attr("disabled", false);
 		}
 	console.log(confidenceMeter);
@@ -1893,8 +1894,13 @@ function finalActions()
 		
 }
 
+var scr = $('#chat-output')[0].scrollHeight;
+$('#chat-output').animate({scrollTop: scr},2000)
+$("#user-input-form").focus();
+
    
         });
+       
         $(document).on("click", "#buttonChallengeOne" , function() {
         
         
@@ -1936,7 +1942,8 @@ function finalActions()
    		                </div>
    		            `);
     			 $("#user-input").attr("disabled", false);
-            	 
+    			 var scr = $('#chat-output')[0].scrollHeight;
+    			 $('#chat-output').animate({scrollTop: scr},2000)
     			 
     			 
 
@@ -2002,7 +2009,8 @@ function finalActions()
    		            `);
     			 $("#user-input").attr("disabled", false);
             	 
-    			 
+    			 var scr = $('#chat-output')[0].scrollHeight;
+    			 $('#chat-output').animate({scrollTop: scr},2000)
     			 
 
                 
@@ -2064,7 +2072,8 @@ function finalActions()
    		            `);
     			 $("#user-input").attr("disabled", false);
             	 
-    			 
+    			 var scr = $('#chat-output')[0].scrollHeight;
+    			 $('#chat-output').animate({scrollTop: scr},2000)
     			 
 
                 
@@ -2125,7 +2134,8 @@ function finalActions()
    		                </div>
    		            `);
     			 $("#user-input").attr("disabled", false);
-            	 
+    			 var scr = $('#chat-output')[0].scrollHeight;
+    			 $('#chat-output').animate({scrollTop: scr},2000)
     			 
     			 
 
@@ -2186,7 +2196,8 @@ function finalActions()
    		            `);
     			 $("#user-input").attr("disabled", false);
             	 
-    			 
+    			 var scr = $('#chat-output')[0].scrollHeight;
+    			 $('#chat-output').animate({scrollTop: scr},2000)
     			 
 
                 
@@ -2245,7 +2256,8 @@ function finalActions()
    		                </div>
    		            `);
     			 $("#user-input").attr("disabled", false);
-            	 
+    			 var scr = $('#chat-output')[0].scrollHeight;
+    			 $('#chat-output').animate({scrollTop: scr},2000)
     			 
     			 
 
@@ -2324,7 +2336,8 @@ function finalActions()
          	   		                </div>
          	   		            `);
          	    			 $("#user-input").attr("disabled", false);
-         	    			
+         	    			var scr = $('#chat-output')[0].scrollHeight;
+         	    			$('#chat-output').animate({scrollTop: scr},2000)
          		    	
          		    },
          		    error: function () {
